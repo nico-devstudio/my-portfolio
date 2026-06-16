@@ -344,6 +344,11 @@ span {
     margin-top: 2rem;
 }
 
+#form-status {
+    font-size: 1.4rem;
+    margin-top: 1rem;
+}
+
 /* Footer Section Code */
 
 .footer {

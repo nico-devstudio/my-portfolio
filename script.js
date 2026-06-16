@@ -33,3 +33,25 @@ function toggleReadMore() {
         btn.innerHTML = "Read More";
     }
 };
+
+emailjs.init("VbGKLAj3L6QiEKi_n");
+
+const form = document.getElementById("contact-form");
+const status = document.getElementById("form-status");
+
+form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    emailjs.sendForm(
+        "service_m0xgx7k",
+        "template_2gecjqf",
+        this
+    ).then(() => {
+        status.textContent = "Message sent successfully!";
+        status.style.color = "green";
+        form.reset();
+    }).catch(() => {
+        status.textContent = "Failed to send message. Try again.";
+        status.style.color = "red";
+    });
+});
