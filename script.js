@@ -34,13 +34,18 @@ function toggleReadMore() {
     }
 };
 
-emailjs.init("VbGKLAj3L6QiEKi_n");
+emailjs.init({
+    publicKey: "VbGKLAj3L6QiEKi_n"
+});
 
 const form = document.getElementById("contact-form");
 const status = document.getElementById("form-status");
 
 form.addEventListener("submit", function (e) {
     e.preventDefault();
+
+    status.textContent = "Sending...";
+    status.style.color = "black";
 
     emailjs.sendForm(
         "service_m0xgx7k",
@@ -50,8 +55,9 @@ form.addEventListener("submit", function (e) {
         status.textContent = "Message sent successfully!";
         status.style.color = "green";
         form.reset();
-    }).catch(() => {
-        status.textContent = "Failed to send message. Try again.";
+    }).catch((error) => {
+        console.log("EmailJS Error:", error);
+        status.textContent = "Failed to send message. Check console.";
         status.style.color = "red";
     });
 });
